@@ -38,3 +38,281 @@
       <div class="flex flex-wrap gap-3">
         <a href="#lead" class="px-6 py-4 rounded-xl bg-[#FFC83D] text-black font-extrabold text-sm">Подобрать авто под бюджет →</a>
         <a href="#catalog" class="px-6 py-4 rounded-xl bg-neutral-900 border border-neutral-700 font-bold text-sm">Каталог автомобилей →</a>
+      </div>
+      <div class="grid grid-cols-3 gap-3 pt-5 border-t border-neutral-800 text-xs">
+        <div><div class="text-lg font-black text-[#FFC83D]">6 стран</div><div class="text-neutral-400">Япония, Корея, Китай, Европа, ОАЭ, США</div></div>
+        <div><div class="text-lg font-black">Без цен «от»</div><div class="text-neutral-400">Считаем под конкретную машину</div></div>
+        <div><div class="text-lg font-black text-[#FFC83D]">Лоты онлайн</div><div class="text-neutral-400">Каталог обновляется</div></div>
+      </div>
+    </div>
+    <div class="md:col-span-5">
+      <div id="hero-card" class="bg-neutral-900/90 border border-neutral-800 rounded-2xl p-4"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ADVANTAGES -->
+<section class="py-14 bg-[#0E0E0E] border-b border-neutral-800">
+  <div class="max-w-6xl mx-auto px-4 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-5"><div class="w-11 h-11 rounded-xl bg-[#FFC83D] text-black grid place-items-center text-xl mb-3">🔍</div><h3 class="font-black mb-1">Проверка до покупки</h3><p class="text-sm text-neutral-400">Перевод аукционного листа, проверка истории, пробега и состояния — до того, как вы что-то оплатите.</p></div>
+    <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-5"><div class="w-11 h-11 rounded-xl bg-[#FFC83D] text-black grid place-items-center text-xl mb-3">💰</div><h3 class="font-black mb-1">Цена под ключ в договоре</h3><p class="text-sm text-neutral-400">Лот, фрахт, пошлина, утильсбор, доставка до города — каждая строка, без цен «от».</p></div>
+    <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-5"><div class="w-11 h-11 rounded-xl bg-[#FFC83D] text-black grid place-items-center text-xl mb-3">📄</div><h3 class="font-black mb-1">Документы для учёта</h3><p class="text-sm text-neutral-400">Растаможиваем, оформляем ЭПТС и СБКТС. Машина передаётся с документами для регистрации.</p></div>
+    <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-5"><div class="w-11 h-11 rounded-xl bg-[#FFC83D] text-black grid place-items-center text-xl mb-3">📸</div><h3 class="font-black mb-1">Отчёт на каждом этапе</h3><p class="text-sm text-neutral-400">Фото и статус от покупки до вашего города — вы всегда знаете, где машина.</p></div>
+  </div>
+</section>
+
+<!-- CATALOG -->
+<section id="catalog" class="py-14 max-w-6xl mx-auto px-4">
+  <div class="text-xs font-extrabold uppercase tracking-widest text-[#FFC83D]">Актуальные лоты</div>
+  <h2 class="text-3xl font-black mb-1">Каталог автомобилей</h2>
+  <p class="text-sm text-neutral-400 mb-5">Показано: <b id="count" class="text-[#FFC83D]"></b></p>
+  <div id="pills" class="flex gap-2 overflow-x-auto pb-3"></div>
+  <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-4 mb-6 space-y-3">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+      <input id="q" placeholder="Марка или модель…" class="col-span-2 lg:col-span-1 bg-neutral-950 border border-neutral-800 rounded-xl px-3 py-2.5 text-white">
+      <select id="body" class="bg-neutral-950 border border-neutral-800 rounded-xl px-3 py-2.5"><option value="">Любой кузов</option><option>Внедорожник</option><option>Кроссовер</option><option>Седан</option><option>Минивэн</option><option>Купе</option></select>
+      <select id="fuel" class="bg-neutral-950 border border-neutral-800 rounded-xl px-3 py-2.5"><option value="">Любое топливо</option><option>Бензин</option><option>Дизель</option><option>Гибрид</option></select>
+      <select id="sort" class="bg-neutral-950 border border-neutral-800 rounded-xl px-3 py-2.5"><option value="">По умолчанию</option><option value="a">Сначала дешевле</option><option value="d">Сначала дороже</option><option value="y">Свежие годы</option></select>
+    </div>
+    <div class="flex items-center gap-3 text-xs">
+      <span class="text-neutral-400 whitespace-nowrap">Бюджет до:</span>
+      <input id="max" type="range" min="1500000" max="8000000" step="250000" value="8000000" class="w-full accent-[#FFC83D]">
+      <span id="maxv" class="font-black text-[#FFC83D] whitespace-nowrap"></span>
+    </div>
+  </div>
+  <div id="grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+</section>
+
+<!-- CALCULATOR -->
+<section id="calc" class="py-14 bg-[#0E0E0E] border-y border-neutral-800">
+  <div class="max-w-5xl mx-auto px-4">
+    <h2 class="text-3xl font-black mb-1">Калькулятор стоимости</h2>
+    <p class="text-sm text-neutral-400 mb-6">Ориентировочный расчёт. Точную сумму менеджер посчитает под конкретную машину.</p>
+    <div class="grid lg:grid-cols-2 gap-0 bg-neutral-900 border border-neutral-800 rounded-3xl overflow-hidden">
+      <div class="p-6 space-y-4 text-xs">
+        <label class="block"><span class="text-neutral-400 uppercase font-bold">Страна</span>
+          <select id="c-country" class="mt-1 w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3 py-3 text-sm"><option value="JP">Япония</option><option value="KR">Южная Корея</option><option value="CN">Китай</option><option value="DE">Европа</option></select></label>
+        <label class="block"><span class="text-neutral-400 uppercase font-bold">Цена за рубежом, $</span>
+          <input id="c-price" type="number" value="22000" class="mt-1 w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3 py-3 text-sm"></label>
+        <label class="block"><span class="text-neutral-400 uppercase font-bold">Объём двигателя, см³</span>
+          <input id="c-vol" type="number" value="1998" class="mt-1 w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3 py-3 text-sm"></label>
+        <label class="block"><span class="text-neutral-400 uppercase font-bold">Возраст авто</span>
+          <select id="c-age" class="mt-1 w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3 py-3 text-sm"><option value="n">До 3 лет</option><option value="m" selected>3–5 лет</option><option value="o">Старше 5 лет</option></select></label>
+      </div>
+      <div class="p-6 bg-neutral-950 border-t lg:border-t-0 lg:border-l border-neutral-800 flex flex-col justify-between">
+        <div id="c-out" class="space-y-2 text-sm"></div>
+        <div class="pt-5 mt-5 border-t border-neutral-800">
+          <div class="text-xs uppercase font-bold text-neutral-400">Итого под ключ</div>
+          <div id="c-total" class="text-3xl font-black text-[#FFC83D] my-1"></div>
+          <a href="#lead" class="block text-center mt-3 py-3.5 rounded-xl bg-[#FFC83D] text-black font-black text-sm">Зафиксировать расчёт в заявке →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section id="steps" class="py-14 max-w-6xl mx-auto px-4">
+  <h2 class="text-3xl font-black mb-6">Как мы работаем</h2>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-5"><div class="text-3xl font-black text-[#FFC83D]/30">01</div><h3 class="font-black">Заявка и договор</h3><p class="text-sm text-neutral-400">Определяем модель и бюджет, заключаем договор с фиксированной ценой.</p></div>
+    <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-5"><div class="text-3xl font-black text-[#FFC83D]/30">02</div><h3 class="font-black">Поиск и проверка</h3><p class="text-sm text-neutral-400">Подбираем лоты, переводим аукционные листы, проверяем состояние.</p></div>
+    <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-5"><div class="text-3xl font-black text-[#FFC83D]/30">03</div><h3 class="font-black">Выкуп</h3><p class="text-sm text-neutral-400">Выкупаем выбранный лот и оплачиваем счёт продавца.</p></div>
+    <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-5"><div class="text-3xl font-black text-[#FFC83D]/30">04</div><h3 class="font-black">Логистика</h3><p class="text-sm text-neutral-400">Доставляем до порта, страхуем и отправляем в Россию.</p></div>
+    <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-5"><div class="text-3xl font-black text-[#FFC83D]/30">05</div><h3 class="font-black">Таможня и документы</h3><p class="text-sm text-neutral-400">Растаможка, утильсбор, СБКТС и ЭПТС.</p></div>
+    <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-5"><div class="text-3xl font-black text-[#FFC83D]/30">06</div><h3 class="font-black">Выдача</h3><p class="text-sm text-neutral-400">Передаём машину с документами или отправляем в ваш город.</p></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="py-14 bg-[#0E0E0E] border-t border-neutral-800">
+  <div class="max-w-3xl mx-auto px-4">
+    <h2 class="text-3xl font-black mb-6">Частые вопросы</h2>
+    <div id="faqs" class="space-y-3"></div>
+  </div>
+</section>
+
+<!-- LEAD FORM -->
+<section id="lead" class="py-14">
+  <div class="max-w-2xl mx-auto px-4">
+    <div class="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 sm:p-10">
+      <h2 class="text-3xl font-black text-center">Подобрать авто под бюджет</h2>
+      <p class="text-sm text-neutral-400 text-center mt-2 mb-6">Оставьте заявку — менеджер свяжется с вами и пришлёт варианты с расчётом.</p>
+      <form class="lead space-y-3 text-sm">
+        <input required placeholder="Ваше имя" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3">
+        <input required type="tel" placeholder="Телефон или Telegram" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3">
+        <input placeholder="Бюджет, ₽" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3">
+        <textarea rows="2" placeholder="Какую машину ищете?" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3"></textarea>
+        <button class="w-full py-4 rounded-xl bg-[#FFC83D] text-black font-extrabold">Получить подборку →</button>
+        <p class="text-[10px] text-neutral-500 text-center">Нажимая кнопку, вы соглашаетесь на обработку персональных данных.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-neutral-800 py-8 text-xs text-neutral-500">
+  <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row justify-between gap-3">
+    <div><b class="text-white">EXPRESS<span class="text-[#FFC83D]">AUTO</span></b> · Авто под заказ из Японии, Кореи, Китая, Европы, ОАЭ и США</div>
+    <!-- ЗАМЕНИ на свои контакты -->
+    <div>Telegram: <a class="text-[#FFC83D]" href="https://t.me/your_username">@your_username</a> · Тел.: +7 (000) 000-00-00</div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div id="modal" class="hidden fixed inset-0 z-50 bg-black/85 backdrop-blur overflow-y-auto p-3">
+  <div class="bg-neutral-900 border border-neutral-800 rounded-3xl max-w-2xl mx-auto my-4 p-5 relative" id="modal-body"></div>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const fmt = n => Math.round(n).toLocaleString('ru-RU') + ' ₽';
+const IMG = id => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=900&q=70`;
+
+const COUNTRIES = [
+  ['ALL','🌍','Все'],['JP','🇯🇵','Япония'],['KR','🇰🇷','Корея'],['CN','🇨🇳','Китай'],['DE','🇩🇪','Европа'],['US','🇺🇸','США']
+];
+
+// breakdown: [инвойс, фрахт, пошлина, утильсбор, лаборатория/ЭПТС, комиссия, доставка по РФ]
+const CARS = [
+ {t:'Toyota Land Cruiser Prado 250',c:'JP',y:2024,km:4200,fuel:'Дизель',body:'Внедорожник',drive:'4WD',eng:'2.8L дизель, 204 л.с.',st:'В наличии во Владивостоке',gr:'5 / A',note:'Аукцион USS Tokyo. Заводское состояние, без окрасов.',img:'photo-1594502184342-2e12f877aa73',b:[4050000,180000,1450000,520000,95000,155000,400000]},
+ {t:'Kia Sorento Signature Gravity',c:'KR',y:2022,km:28500,fuel:'Дизель',body:'Кроссовер',drive:'4WD',eng:'2.2L дизель, 202 л.с.',st:'Под заказ (18 дней)',gr:'Encar',note:'Проверен сканером Encar. Заводское ЛКП, 1 владелец.',img:'photo-1617814076367-b759c7d7e738',b:[2340000,120000,720000,310000,85000,135000,180000]},
+ {t:'Li Auto L7 Max Luxury',c:'CN',y:2023,km:9400,fuel:'Гибрид',body:'Кроссовер',drive:'AWD',eng:'1.5L гибрид, 449 л.с.',st:'В пути во Владивосток',gr:'AAA',note:'Пневмоподвеска, лидары, мастер-аккаунт перенесён.',img:'photo-1502877338535-766e1452684a',b:[3330000,195000,890000,540000,95000,150000,250000]},
+ {t:'BMW 530i M Sport G30',c:'DE',y:2021,km:46000,fuel:'Бензин',body:'Седан',drive:'RWD',eng:'2.0L бензин, 252 л.с.',st:'Под заказ (24 дня)',gr:'Dealer',note:'Дилерский авто из Мюнхена, полная сервисная история.',img:'photo-1555215695-3004980ad54e',b:[2880000,240000,980000,410000,110000,140000,190000]},
+ {t:'Nissan Serena e-POWER Highway Star',c:'JP',y:2020,km:51000,fuel:'Гибрид',body:'Минивэн',drive:'FWD',eng:'1.2L гибрид, 136 л.с.',st:'В пути во Владивосток',gr:'4.5 / B',note:'Аукцион TAA. 1 владелец, ProPilot, обзор 360°.',img:'photo-1533473359331-0135ef1b58bf',b:[1215000,115000,410000,195000,85000,100000,60000]},
+ {t:'Ford Mustang GT 5.0 Premium',c:'US',y:2021,km:31000,fuel:'Бензин',body:'Купе',drive:'RWD',eng:'5.0L V8, 460 л.с.',st:'Под заказ (35 дней)',gr:'4.8',note:'Аукцион Manheim, чистый Carfax, без ДТП.',img:'photo-1584345604476-8ec5e12e42dd',b:[3240000,310000,1420000,510000,110000,150000,150000]}
+];
+CARS.forEach((c,i)=>{c.id=i;c.price=c.b.reduce((a,x)=>a+x,0);c.flag=COUNTRIES.find(x=>x[0]===c.c)[1];c.cn=COUNTRIES.find(x=>x[0]===c.c)[2]});
+
+const LABELS = ['Выкуп автомобиля (инвойс)','Фрахт и логистика','Таможенная пошлина','Утилизационный сбор','Лаборатория, СБКТС, ЭПТС','Услуги EXPRESS AUTO','Доставка по РФ'];
+
+const FAQS = [
+ ['Что входит в цену «под ключ»?','Покупка автомобиля, доставка до порта, фрахт, пошлина, утилизационный сбор, СБКТС и ЭПТС, услуги компании и доставка в ваш город. Все статьи указываются в договоре.'],
+ ['Сколько времени занимает привоз?','Ориентировочно: из Японии и Кореи 2–4 недели, из Китая 3–4 недели, из Европы, ОАЭ и США 5–7 недель. Точный срок называет менеджер.'],
+ ['Как проверяется состояние авто?','По аукционному листу и истории автомобиля, плюс фото и видеоосмотр. Перевод листа делаем до покупки.'],
+ ['Смогу ли я поставить машину на учёт?','Мы передаём автомобиль с ЭПТС, СБКТС, таможенными документами и договором — то, что нужно для регистрации в ГИБДД.']
+];
+
+let state = {country:'ALL'};
+
+// ---------- toast ----------
+function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.remove('hidden');clearTimeout(window._t);window._t=setTimeout(()=>t.classList.add('hidden'),4500)}
+
+// ---------- hero card ----------
+let heroI = 0;
+function heroCard(){
+  const c = CARS[heroI % CARS.length];
+  $('#hero-card').innerHTML = `
+   <div class="flex items-center justify-between pb-3 border-b border-neutral-800">
+     <span class="text-xs font-black uppercase">Сейчас в каталоге</span>
+     <span class="flex gap-1"><button onclick="heroI=(heroI+CARS.length-1)%CARS.length;heroCard()" class="px-2.5 py-1 rounded-lg bg-neutral-800">‹</button><button onclick="heroI=(heroI+1)%CARS.length;heroCard()" class="px-2.5 py-1 rounded-lg bg-neutral-800">›</button></span>
+   </div>
+   <div class="relative mt-3 rounded-xl overflow-hidden aspect-[16/10] bg-neutral-950">
+     <img src="${IMG(c.img)}" alt="${c.t}" class="w-full h-full object-cover">
+     <div class="absolute top-2 left-2 bg-black/75 px-2 py-1 rounded-lg text-xs font-bold">${c.flag} ${c.cn}</div>
+   </div>
+   <h3 class="mt-3 font-black text-lg">${c.t}</h3>
+   <div class="text-xs text-neutral-400">${c.y} · ${c.km.toLocaleString('ru-RU')} км · ${c.eng}</div>
+   <div class="flex items-end justify-between mt-3">
+     <div><div class="text-[10px] uppercase text-neutral-400 font-bold">Под ключ</div><div class="text-2xl font-black text-[#FFC83D]">${fmt(c.price)}</div></div>
+     <button onclick="openCar(${c.id})" class="px-4 py-2 bg-[#FFC83D] text-black text-xs font-black rounded-xl">Смотреть</button>
+   </div>`;
+}
+
+// ---------- catalog ----------
+function pills(){
+  $('#pills').innerHTML = COUNTRIES.map(([k,f,n])=>`<button onclick="state.country='${k}';pills();render()" class="px-3.5 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap ${state.country===k?'bg-[#FFC83D] text-black':'bg-neutral-900 border border-neutral-800 text-neutral-300'}">${f} ${n}</button>`).join('');
+}
+function render(){
+  const q=$('#q').value.toLowerCase(), body=$('#body').value, fuel=$('#fuel').value, max=+$('#max').value, sort=$('#sort').value;
+  $('#maxv').textContent = fmt(max);
+  let list = CARS.filter(c=>(state.country==='ALL'||c.c===state.country)&&c.t.toLowerCase().includes(q)&&(!body||c.body===body)&&(!fuel||c.fuel===fuel)&&c.price<=max);
+  if(sort==='a')list.sort((a,b)=>a.price-b.price);
+  if(sort==='d')list.sort((a,b)=>b.price-a.price);
+  if(sort==='y')list.sort((a,b)=>b.y-a.y);
+  $('#count').textContent = list.length+' из '+CARS.length;
+  $('#grid').innerHTML = list.length ? list.map(c=>`
+   <div class="bg-neutral-900 border border-neutral-800 hover:border-[#FFC83D]/60 rounded-2xl overflow-hidden flex flex-col transition">
+     <div class="relative aspect-[16/10] bg-neutral-950">
+       <img loading="lazy" src="${IMG(c.img)}" alt="${c.t}" class="w-full h-full object-cover">
+       <div class="absolute top-2 left-2 bg-black/80 px-2 py-1 rounded-lg text-xs font-bold">${c.flag} ${c.cn}</div>
+       <div class="absolute top-2 right-2 bg-[#FFC83D] text-black px-2 py-1 rounded-lg text-xs font-black">★ ${c.gr}</div>
+       <div class="absolute bottom-2 left-2 bg-black/85 px-2 py-1 rounded-lg text-[11px]">${c.st}</div>
+     </div>
+     <div class="p-4 flex-1 flex flex-col justify-between">
+       <div>
+         <div class="flex justify-between gap-2"><h3 class="font-black">${c.t}</h3><span class="text-xs bg-neutral-800 px-2 py-0.5 rounded h-fit">${c.y}</span></div>
+         <div class="grid grid-cols-2 gap-2 mt-3 text-xs text-neutral-300">
+           <div class="bg-neutral-950 border border-neutral-800 rounded-lg p-2">${c.km.toLocaleString('ru-RU')} км</div>
+           <div class="bg-neutral-950 border border-neutral-800 rounded-lg p-2">${c.fuel}</div>
+           <div class="bg-neutral-950 border border-neutral-800 rounded-lg p-2">${c.drive}</div>
+           <div class="bg-neutral-950 border border-neutral-800 rounded-lg p-2">${c.body}</div>
+         </div>
+       </div>
+       <div class="mt-4 pt-3 border-t border-neutral-800 flex items-center justify-between">
+         <div><div class="text-[10px] uppercase text-neutral-400 font-bold">Под ключ</div><div class="text-xl font-black text-[#FFC83D]">${fmt(c.price)}</div></div>
+         <button onclick="openCar(${c.id})" class="px-4 py-2.5 rounded-xl bg-neutral-800 hover:bg-[#FFC83D] hover:text-black text-xs font-extrabold">Подробнее</button>
+       </div>
+     </div>
+   </div>`).join('') : `<div class="col-span-full text-center py-14 border border-dashed border-neutral-800 rounded-2xl text-neutral-400">Ничего не найдено. <a href="#lead" class="text-[#FFC83D] underline">Подберём индивидуально</a></div>`;
+}
+['#q','#body','#fuel','#sort','#max'].forEach(s=>$(s).addEventListener('input',render));
+
+// ---------- modal ----------
+function openCar(id){
+  const c=CARS[id];
+  $('#modal-body').innerHTML = `
+   <button onclick="closeModal()" class="absolute top-3 right-3 w-9 h-9 rounded-full bg-black/60 text-lg">✕</button>
+   <div class="text-xs text-neutral-400 font-bold uppercase mb-1 pr-10">${c.flag} ${c.cn} · Оценка ${c.gr}</div>
+   <h2 class="text-2xl font-black pr-10">${c.t}</h2>
+   <img src="${IMG(c.img)}" alt="${c.t}" class="w-full aspect-[16/9] object-cover rounded-2xl my-4">
+   <div class="grid grid-cols-2 gap-2 text-xs">
+     <div class="bg-neutral-950 border border-neutral-800 rounded-xl p-3"><span class="text-neutral-500 block">Год</span><b class="text-sm">${c.y}</b></div>
+     <div class="bg-neutral-950 border border-neutral-800 rounded-xl p-3"><span class="text-neutral-500 block">Пробег</span><b class="text-sm">${c.km.toLocaleString('ru-RU')} км</b></div>
+     <div class="bg-neutral-950 border border-neutral-800 rounded-xl p-3"><span class="text-neutral-500 block">Двигатель</span><b class="text-sm">${c.eng}</b></div>
+     <div class="bg-neutral-950 border border-neutral-800 rounded-xl p-3"><span class="text-neutral-500 block">Привод</span><b class="text-sm">${c.drive}</b></div>
+   </div>
+   <div class="bg-neutral-950 border border-neutral-800 rounded-2xl p-4 mt-4 text-sm"><div class="text-[#FFC83D] text-xs font-bold uppercase mb-1">Заключение инспектора</div>${c.note}</div>
+   <h3 class="font-black uppercase text-sm mt-5 mb-2">Расчёт цены под ключ</h3>
+   <div class="bg-neutral-950 border border-neutral-800 rounded-2xl p-4 space-y-2 text-xs">
+     ${c.b.map((v,i)=>`<div class="flex justify-between text-neutral-400"><span>${LABELS[i]}</span><b class="text-white">${fmt(v)}</b></div>`).join('')}
+     <div class="pt-2 border-t border-neutral-800 flex justify-between text-sm font-black"><span>Итого</span><span class="text-[#FFC83D]">${fmt(c.price)}</span></div>
+   </div>
+   <a href="#lead" onclick="closeModal()" class="block text-center mt-5 py-4 bg-[#FFC83D] text-black font-extrabold rounded-xl">Забронировать этот лот →</a>`;
+  $('#modal').classList.remove('hidden');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){$('#modal').classList.add('hidden');document.body.style.overflow=''}
+$('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});
+
+// ---------- calculator (ориентировочный) ----------
+function calc(){
+  const rate=90, price=(+$('#c-price').value||0)*rate, vol=+$('#c-vol').value||0, age=$('#c-age').value, ct=$('#c-country').value;
+  let duty = age==='n' ? Math.max(price*.48, vol*3.5*rate) : age==='m' ? Math.max(price*.20, vol*2.5*rate) : Math.max(price*.50, vol*4.8*rate);
+  const util = vol>3000 ? 970000 : age==='o' ? 125000 : 210000;
+  const freight = {JP:140000,KR:130000,CN:190000,DE:280000}[ct];
+  const rows = [['Инвойс автомобиля',price],['Фрахт и логистика',freight],['Таможенная пошлина',duty],['Утилизационный сбор',util],['СБКТС + ЭПТС',85000],['Услуги EXPRESS AUTO',120000],['Доставка по РФ (ориентир)',180000]];
+  $('#c-out').innerHTML = rows.map(([n,v])=>`<div class="flex justify-between text-neutral-400"><span>${n}</span><b class="text-white">${fmt(v)}</b></div>`).join('');
+  $('#c-total').textContent = fmt(rows.reduce((a,r)=>a+r[1],0));
+}
+['#c-country','#c-price','#c-vol','#c-age'].forEach(s=>$(s).addEventListener('input',calc));
+
+// ---------- FAQ ----------
+$('#faqs').innerHTML = FAQS.map(([q,a],i)=>`
+  <div class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden">
+    <button onclick="this.nextElementSibling.classList.toggle('hidden')" class="w-full text-left px-5 py-4 font-bold flex justify-between gap-3"><span>${q}</span><span class="text-[#FFC83D]">+</span></button>
+    <div class="${i?'hidden':''} px-5 pb-5 text-sm text-neutral-300">${a}</div>
+  </div>`).join('');
+
+// ---------- forms ----------
+// ВНИМАНИЕ: пока форма только показывает сообщение. Чтобы заявки приходили тебе — подключи Formspree (см. инструкцию).
+document.querySelectorAll('form.lead').forEach(f=>f.addEventListener('submit',e=>{
+  e.preventDefault();
+  toast('Спасибо за заявку! Мы свяжемся с вами в ближайшее время.');
+  f.reset();
+}));
+
+pills(); render(); calc(); heroCard();
+</script>
+</body>
+</html>
